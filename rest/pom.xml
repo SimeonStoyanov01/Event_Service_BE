@@ -57,7 +57,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.2.1</version>
                 <configuration>
-                    <mainClass>bg.tuvarna.events.rest.EventsApplication</mainClass>
+                    <mainClass>bg.tu.varna.events.rest.EventsApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
