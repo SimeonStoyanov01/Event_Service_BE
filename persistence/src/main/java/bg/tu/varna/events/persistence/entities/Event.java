@@ -1,0 +1,44 @@
+package bg.tu.varna.events.persistence.entities;
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "events")
+public class Event {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private UUID eventId;
+
+	@Column(nullable = false)
+	private String eventName;
+
+	@Column(nullable = false)
+	private String eventDescription;
+
+	@Column(nullable = false)
+	private LocalDateTime eventDateTime;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	@Column(nullable = false)
+	private Integer capacity;
+
+	@ManyToOne
+	@JoinColumn(name = "organization_id")
+	private Organization organization;
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+	private List<Reservation> reservations;
+}
