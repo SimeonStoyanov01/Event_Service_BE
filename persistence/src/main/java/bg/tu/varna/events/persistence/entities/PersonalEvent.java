@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -35,5 +35,5 @@ public class PersonalEvent {
 	private User user;
 
 	@OneToMany(mappedBy = "personalEvent")
-	private Set<Invitation> invitations;
+	private List<Invitation> invitations;
 }
