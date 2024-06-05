@@ -1,11 +1,12 @@
 package bg.tu.varna.events.rest.config;
 
-import bg.tu.varna.events.core.JwtService;
+import bg.tu.varna.events.core.external.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,16 +19,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
+@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private final JwtService jwtService;
 	private final UserDetailsService userDetailsService;
-
-	@Autowired
-	public JwtAuthenticationFilter(JwtService jwtService, UserDetailsService userDetailsService) {
-		this.jwtService = jwtService;
-		this.userDetailsService = userDetailsService;
-	}
 
 	@Override
 	protected void doFilterInternal(
@@ -35,7 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			@NonNull HttpServletResponse response,
 			@NonNull FilterChain filterChain
 	) throws ServletException, IOException {
-		final String authHeader = request.getHeader("Authorization");
+		final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 		final String jwt;
 		final String userEmail;
 
@@ -48,8 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 		if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
-
-			if (jwtService.isTokenValid(jwt, userDetails)) {
+			if (jwtService.isTokenValidForUser(jwt, userDetails) && jwtService.isTokenValidInTokenRepo(jwt)) {
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
 						userDetails,
 						null,
@@ -64,5 +59,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		}
 		filterChain.doFilter(request, response);
 	}
+
+
 
 }
