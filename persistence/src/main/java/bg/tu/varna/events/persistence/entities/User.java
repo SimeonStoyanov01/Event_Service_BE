@@ -6,7 +6,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -47,13 +50,16 @@ public class User implements UserDetails {
 	private Organization organization;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Reservation> reservations = new HashSet<>();
+	private List<Reservation> reservations = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<PersonalEvent> personalEvents = new HashSet<>();
+	private List<PersonalEvent> personalEvents = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Subscription> subscriptions = new HashSet<>();
+	private List<Subscription> subscriptions = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user")
+	private List<Token> tokens;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

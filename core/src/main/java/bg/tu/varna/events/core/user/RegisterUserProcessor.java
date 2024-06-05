@@ -1,4 +1,4 @@
-package bg.tu.varna.events.core;
+package bg.tu.varna.events.core.user;
 
 import bg.tu.varna.events.api.exceptions.PasswordsDoNotMatchException;
 import bg.tu.varna.events.api.exceptions.UserExistsException;
@@ -34,6 +34,15 @@ public class RegisterUserProcessor implements RegisterUserOperation {
 
 		Role role = userRepository.count() == 0 ? Role.ADMIN : Role.PERSONAL;
 
+		User user = saveUser(request, role);
+
+		return RegisterUserResponse.builder()
+				.userId(String.valueOf(user.getUserId()))
+				.email(user.getEmail())
+				.build();
+	}
+
+	private User saveUser(RegisterUserRequest request, Role role) {
 		User user = User
 				.builder()
 				.email(request.getEmail())
@@ -44,10 +53,6 @@ public class RegisterUserProcessor implements RegisterUserOperation {
 				.password(passwordEncoder.encode(request.getPassword()))
 				.build();
 		userRepository.save(user);
-
-		return RegisterUserResponse.builder()
-				.userId(String.valueOf(user.getUserId()))
-				.email(user.getEmail())
-				.build();
+		return user;
 	}
 }

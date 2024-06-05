@@ -1,4 +1,4 @@
-package bg.tu.varna.events.core;
+package bg.tu.varna.events.core.user;
 
 import bg.tu.varna.events.api.exceptions.OrganizationAlreadyExistsException;
 import bg.tu.varna.events.api.exceptions.PasswordsDoNotMatchException;
@@ -32,13 +32,7 @@ public class RegisterOrganizationProcessor implements RegisterOrganizationOperat
 					throw new OrganizationAlreadyExistsException();
 				});
 
-		Organization organization = Organization
-				.builder()
-				.organizationName(request.getOrganizationName())
-				.organizationAddress(request.getOrganizationAddress())
-				.build();
-
-		organizationRepository.save(organization);
+		Organization organization = saveOrganization(request);
 
 		userRepository.findUserByEmail(request.getEmail())
 				.ifPresent(user -> {
@@ -49,6 +43,18 @@ public class RegisterOrganizationProcessor implements RegisterOrganizationOperat
 			throw new PasswordsDoNotMatchException();
 		}
 
+		User user = saveUser(request, organization);
+
+		return RegisterOrganizationResponse
+				.builder()
+				.organizationId(String.valueOf(user.getOrganization().getOrganizationId()))
+				.organizationName(user.getOrganization().getOrganizationName())
+				.userId(String.valueOf(user.getUserId()))
+				.email(user.getEmail())
+				.build();
+	}
+
+	private User saveUser(RegisterOrganizationRequest request, Organization organization) {
 		User user = User
 				.builder()
 				.email(request.getEmail())
@@ -60,13 +66,17 @@ public class RegisterOrganizationProcessor implements RegisterOrganizationOperat
 				.organization(organization)
 				.build();
 		userRepository.save(user);
+		return user;
+	}
 
-		return RegisterOrganizationResponse
+	private Organization saveOrganization(RegisterOrganizationRequest request) {
+		Organization organization = Organization
 				.builder()
-				.organizationId(String.valueOf(user.getOrganization().getOrganizationId()))
-				.organizationName(user.getOrganization().getOrganizationName())
-				.userId(String.valueOf(user.getUserId()))
-				.email(user.getEmail())
+				.organizationName(request.getOrganizationName())
+				.organizationAddress(request.getOrganizationAddress())
 				.build();
+
+		organizationRepository.save(organization);
+		return organization;
 	}
 }

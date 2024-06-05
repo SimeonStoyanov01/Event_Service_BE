@@ -1,4 +1,4 @@
-package bg.tu.varna.events.core;
+package bg.tu.varna.events.core.user;
 
 import bg.tu.varna.events.api.exceptions.OrganizationNotFoundException;
 import bg.tu.varna.events.api.exceptions.PasswordsDoNotMatchException;
@@ -42,6 +42,18 @@ public class RegisterBusinessUserProcessor implements RegisterBusinessUserOperat
 			throw new PasswordsDoNotMatchException();
 		}
 
+		User user = saveUser(request, organization);
+
+		return RegisterBusinessUserResponse
+				.builder()
+				.organizationId(String.valueOf(user.getOrganization().getOrganizationId()))
+				.organizationName(user.getOrganization().getOrganizationName())
+				.userId(String.valueOf(user.getUserId()))
+				.email(user.getEmail())
+				.build();
+	}
+
+	private User saveUser(RegisterBusinessUserRequest request, Organization organization) {
 		User user = User
 				.builder()
 				.email(request.getEmail())
@@ -53,14 +65,7 @@ public class RegisterBusinessUserProcessor implements RegisterBusinessUserOperat
 				.organization(organization)
 				.build();
 		userRepository.save(user);
-
-		return RegisterBusinessUserResponse
-				.builder()
-				.organizationId(String.valueOf(user.getOrganization().getOrganizationId()))
-				.organizationName(user.getOrganization().getOrganizationName())
-				.userId(String.valueOf(user.getUserId()))
-				.email(user.getEmail())
-				.build();
+		return user;
 	}
 
 }
