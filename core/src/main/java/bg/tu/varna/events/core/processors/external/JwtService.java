@@ -1,4 +1,4 @@
-package bg.tu.varna.events.core.external;
+package bg.tu.varna.events.core.processors.external;
 
 import bg.tu.varna.events.persistence.repositories.TokenRepository;
 import io.jsonwebtoken.Claims;

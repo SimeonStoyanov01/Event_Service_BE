@@ -1,4 +1,4 @@
-package bg.tu.varna.events.core.user;
+package bg.tu.varna.events.core.processors.user;
 
 import bg.tu.varna.events.api.exceptions.TokenNotFoundException;
 import bg.tu.varna.events.api.operations.user.logout.LogoutOperation;

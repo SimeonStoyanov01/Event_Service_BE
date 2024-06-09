@@ -1,10 +1,10 @@
-package bg.tu.varna.events.core.user;
+package bg.tu.varna.events.core.processors.user;
 
 import bg.tu.varna.events.api.exceptions.UserNotFoundException;
 import bg.tu.varna.events.api.operations.user.login.AuthenticationOperation;
 import bg.tu.varna.events.api.operations.user.login.AuthenticationRequest;
 import bg.tu.varna.events.api.operations.user.login.AuthenticationResponse;
-import bg.tu.varna.events.core.external.JwtService;
+import bg.tu.varna.events.core.processors.external.JwtService;
 import bg.tu.varna.events.persistence.entities.Token;
 import bg.tu.varna.events.persistence.entities.TokenType;
 import bg.tu.varna.events.persistence.entities.User;

@@ -23,6 +23,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -75,6 +76,7 @@ public class AuthenticationController {
 	}
 
 	@PostMapping("/register/business_user")
+	@PreAuthorize("hasAuthority('business_user:create')")
 	public ResponseEntity<RegisterBusinessUserResponse> registerBusinessUser(@RequestBody @Valid RegisterBusinessUserRequest request){
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
@@ -82,7 +84,7 @@ public class AuthenticationController {
 	}
 
 	@PostMapping("/refresh")
-	public ResponseEntity<RefreshResponse> registerBusinessUser(@RequestBody @Valid RefreshRequest request){
+	public ResponseEntity<RefreshResponse> refreshUser(@RequestBody @Valid RefreshRequest request){
 		return ResponseEntity.ok(refreshOperation.process(request));
 	}
 	@GetMapping("/test")

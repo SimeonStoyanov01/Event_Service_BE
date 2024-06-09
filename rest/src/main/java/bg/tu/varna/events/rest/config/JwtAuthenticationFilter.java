@@ -1,6 +1,6 @@
 package bg.tu.varna.events.rest.config;
 
-import bg.tu.varna.events.core.external.JwtService;
+import bg.tu.varna.events.core.processors.external.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
