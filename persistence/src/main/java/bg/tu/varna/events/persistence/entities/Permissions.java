@@ -17,6 +17,7 @@ public enum Permissions {
 	BUSINESS_ADMIN_CREATE("business_admin:create"),
 	BUSINESS_ADMIN_DELETE("business_admin:delete"),
 
+
 	BUSINESS_USER_READ("business_user:read"),
 	BUSINESS_USER_CREATE("business_user:create"),
 	BUSINESS_USER_UPDATE("business_user:update"),
@@ -32,10 +33,12 @@ public enum Permissions {
 	ORGANIZATION_UPDATE("organization:update"),
 	ORGANIZATION_DELETE("organization:delete"),
 
-	BUSINESS_EVENT_READ("business_event:read"),
+	BUSINESS_EVENT_BYUSER_READ("business_event_byuser:read"),
 	BUSINESS_EVENT_CREATE("business_event:create"),
 	BUSINESS_EVENT_UPDATE("business_event:update"),
 	BUSINESS_EVENT_DELETE("business_event:delete"),
+	BUSINESS_EVENT_SUSPEND("business_event:suspend"),
+
 
 	PERSONAL_EVENT_CREATE("personal_event:create"),
 	PERSONAL_EVENT_UPDATE("personal_event:update"),
