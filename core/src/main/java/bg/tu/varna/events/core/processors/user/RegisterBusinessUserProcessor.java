@@ -1,11 +1,13 @@
-package bg.tu.varna.events.core.user;
+package bg.tu.varna.events.core.processors.user;
 
 import bg.tu.varna.events.api.exceptions.OrganizationNotFoundException;
 import bg.tu.varna.events.api.exceptions.PasswordsDoNotMatchException;
+import bg.tu.varna.events.api.exceptions.UnauthorizedActionException;
 import bg.tu.varna.events.api.exceptions.UserExistsException;
 import bg.tu.varna.events.api.operations.user.register.business.RegisterBusinessUserOperation;
 import bg.tu.varna.events.api.operations.user.register.business.RegisterBusinessUserRequest;
 import bg.tu.varna.events.api.operations.user.register.business.RegisterBusinessUserResponse;
+import bg.tu.varna.events.core.validationutils.ValidationUtils;
 import bg.tu.varna.events.persistence.entities.Organization;
 import bg.tu.varna.events.persistence.entities.Role;
 import bg.tu.varna.events.persistence.entities.User;
@@ -25,6 +27,7 @@ public class RegisterBusinessUserProcessor implements RegisterBusinessUserOperat
 	private final UserRepository userRepository;
 	private final OrganizationRepository organizationRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final ValidationUtils validationUtils;
 
 	@Override
 	public RegisterBusinessUserResponse process(RegisterBusinessUserRequest request) {
@@ -41,15 +44,17 @@ public class RegisterBusinessUserProcessor implements RegisterBusinessUserOperat
 		if (!Objects.equals(request.getPassword(), request.getConfirmPassword())) {
 			throw new PasswordsDoNotMatchException();
 		}
+		User authUser = validationUtils.getCurrentAuthenticatedUser();//Retrieving the logged user's credentials
+		validateUserOrganization(authUser, organization);
 
-		User user = saveUser(request, organization);
+		User savedUser = saveUser(request, organization);//persisting the newly registered user's entity
 
 		return RegisterBusinessUserResponse
 				.builder()
-				.organizationId(String.valueOf(user.getOrganization().getOrganizationId()))
-				.organizationName(user.getOrganization().getOrganizationName())
-				.userId(String.valueOf(user.getUserId()))
-				.email(user.getEmail())
+				.organizationId(String.valueOf(savedUser.getOrganization().getOrganizationId()))
+				.organizationName(savedUser.getOrganization().getOrganizationName())
+				.userId(String.valueOf(savedUser.getUserId()))
+				.email(savedUser.getEmail())
 				.build();
 	}
 
@@ -67,5 +72,11 @@ public class RegisterBusinessUserProcessor implements RegisterBusinessUserOperat
 		userRepository.save(user);
 		return user;
 	}
-
+	private static void validateUserOrganization(User user, Organization organization) {
+		if (user.getRole() == Role.BUSINESS_ADMIN) {
+			if (!organization.getOrganizationId().equals(user.getOrganization().getOrganizationId())) {
+				throw new UnauthorizedActionException();
+			}
+		}
+	}
 }

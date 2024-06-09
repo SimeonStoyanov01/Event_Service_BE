@@ -1,11 +1,11 @@
-package bg.tu.varna.events.core.user;
+package bg.tu.varna.events.core.processors.user;
 
 import bg.tu.varna.events.api.exceptions.InvalidRefreshTokenException;
 import bg.tu.varna.events.api.exceptions.UserNotFoundException;
 import bg.tu.varna.events.api.operations.user.refresh.RefreshOperation;
 import bg.tu.varna.events.api.operations.user.refresh.RefreshRequest;
 import bg.tu.varna.events.api.operations.user.refresh.RefreshResponse;
-import bg.tu.varna.events.core.external.JwtService;
+import bg.tu.varna.events.core.processors.external.JwtService;
 import bg.tu.varna.events.persistence.entities.Token;
 import bg.tu.varna.events.persistence.entities.TokenType;
 import bg.tu.varna.events.persistence.entities.User;
