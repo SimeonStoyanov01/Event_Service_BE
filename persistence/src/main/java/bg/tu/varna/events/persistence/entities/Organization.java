@@ -27,6 +27,10 @@ public class Organization {
 
 	private Integer credibilityScore;
 
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private OrganizationStatus organizationStatus;
+
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
 	private List<User> businessUsers = new ArrayList<>();
 

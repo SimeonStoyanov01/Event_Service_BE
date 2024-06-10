@@ -6,6 +6,7 @@ import bg.tu.varna.events.api.operations.businessevent.getall.GetAllEventsOperat
 import bg.tu.varna.events.api.operations.businessevent.getall.GetAllEventsRequest;
 import bg.tu.varna.events.api.operations.businessevent.getall.GetAllEventsResponse;
 import bg.tu.varna.events.persistence.entities.EventStatus;
+import bg.tu.varna.events.persistence.entities.OrganizationStatus;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
@@ -23,8 +24,8 @@ public class GetAllBusinessEventsProcessor implements GetAllEventsOperation {
 	@Override
 	public GetAllEventsResponse process(GetAllEventsRequest request) {
 		List<EventModel> eventModels = (request.getIncludeSuspended()
-				? eventRepository.findAll()
-				: eventRepository.findByStatusNot(EventStatus.SUSPENDED))
+				? eventRepository.findByOrganizationOrganizationStatusNot(OrganizationStatus.SUSPENDED)
+				: eventRepository.findByStatusNotAndOrganizationOrganizationStatusNot(EventStatus.SUSPENDED,OrganizationStatus.SUSPENDED))
 				.stream()
 				.map(event -> conversionService.convert(event, EventModel.class))
 				.toList();
