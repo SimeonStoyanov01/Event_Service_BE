@@ -4,7 +4,7 @@ import bg.tu.varna.events.api.exceptions.EventNotFoundException;
 import bg.tu.varna.events.api.operations.businessevent.delete.DeleteEventOperation;
 import bg.tu.varna.events.api.operations.businessevent.delete.DeleteEventRequest;
 import bg.tu.varna.events.api.operations.businessevent.delete.DeleteEventResponse;
-import bg.tu.varna.events.core.validationutils.ValidationUtils;
+import bg.tu.varna.events.core.utils.ValidationUtils;
 import bg.tu.varna.events.persistence.entities.Event;
 import bg.tu.varna.events.persistence.entities.User;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
