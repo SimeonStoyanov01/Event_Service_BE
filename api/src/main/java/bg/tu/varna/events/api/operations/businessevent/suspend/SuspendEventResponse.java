@@ -10,6 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SuspendEventResponse implements ProcessorResponse {
-	EventModel eventModel;
+	private EventModel eventModel;
 }
 
