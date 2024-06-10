@@ -5,7 +5,7 @@ import bg.tu.varna.events.api.model.EventModel;
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsOperation;
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsRequest;
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsResponse;
-import bg.tu.varna.events.core.validationutils.ValidationUtils;
+import bg.tu.varna.events.core.utils.ValidationUtils;
 import bg.tu.varna.events.persistence.entities.EventStatus;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
