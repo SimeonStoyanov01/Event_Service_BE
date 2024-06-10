@@ -101,7 +101,7 @@ public class BusinessEventController {
 
 	@PatchMapping("/update")
 	@PreAuthorize("hasAuthority('business_event:update')")
-	public ResponseEntity<PatchEventResponse> suspendEvent(@RequestBody @Valid PatchEventRequest request) {
+	public ResponseEntity<PatchEventResponse> updateEvent(@RequestBody @Valid PatchEventRequest request) {
 		return ResponseEntity.ok(patchEventOperation.process(request));
 	}
 

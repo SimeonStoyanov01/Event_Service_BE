@@ -1,15 +1,13 @@
 package bg.tu.varna.events.core.processors.businessevent;
 
 import bg.tu.varna.events.api.exceptions.OrganizationNotFoundException;
+import bg.tu.varna.events.api.exceptions.OrganizationSuspendedException;
 import bg.tu.varna.events.api.model.EventModel;
 import bg.tu.varna.events.api.operations.businessevent.create.CreateEventOperation;
 import bg.tu.varna.events.api.operations.businessevent.create.CreateEventRequest;
 import bg.tu.varna.events.api.operations.businessevent.create.CreateEventResponse;
 import bg.tu.varna.events.core.utils.ValidationUtils;
-import bg.tu.varna.events.persistence.entities.Event;
-import bg.tu.varna.events.persistence.entities.EventStatus;
-import bg.tu.varna.events.persistence.entities.Organization;
-import bg.tu.varna.events.persistence.entities.User;
+import bg.tu.varna.events.persistence.entities.*;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
 import bg.tu.varna.events.persistence.repositories.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +27,9 @@ public class CreateBusinessEventProcessor implements CreateEventOperation {
 	public CreateEventResponse process(CreateEventRequest request) {
 		Organization organization = organizationRepository.findById(request.getOrganizationId())
 				.orElseThrow(OrganizationNotFoundException::new);
+
+		if(organization.getOrganizationStatus() == OrganizationStatus.SUSPENDED)
+			throw new OrganizationSuspendedException();
 
 		User user = validationUtils.getCurrentAuthenticatedUser();
 		validationUtils.validateUserBusinessOrganization(user, organization);
