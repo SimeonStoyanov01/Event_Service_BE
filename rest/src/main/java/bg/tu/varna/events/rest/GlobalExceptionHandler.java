@@ -47,6 +47,15 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleEmptyEventsListException(EmptyEventsListException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
+	@ExceptionHandler(EmptyEmployeeListException.class)
+	public ResponseEntity<String> handleEmptyEventsListException(EmptyEmployeeListException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
+
+	@ExceptionHandler(EmptySubscriptionsListException.class)
+	public ResponseEntity<String> handleEmptyEventsListException(EmptySubscriptionsListException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
 
 	@ExceptionHandler(EventNotFoundException.class)
 	public ResponseEntity<String> handleEventNotFoundException(EventNotFoundException ex) {
@@ -82,6 +91,12 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleUnauthorizedActionException(UnauthorizedActionException ex) {
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
 	}
+
+	@ExceptionHandler(OrganizationSuspendedException.class)
+	public ResponseEntity<String> handleUnauthorizedActionException(OrganizationSuspendedException ex) {
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+	}
+
 
 	@ExceptionHandler(UserExistsException.class)
 	public ResponseEntity<String> handleUserExistsException(UserExistsException ex) {
