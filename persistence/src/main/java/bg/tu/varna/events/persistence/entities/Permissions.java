@@ -28,9 +28,11 @@ public enum Permissions {
 	USER_UPDATE("user:update"),
 	USER_DELETE("user:delete"),
 
-	ORGANIZATION_READ("organization:create"),
+	ORGANIZATION_READ_SUBSCRIPTIONS("organization:read-subscriptions"),
+	ORGANIZATION_READ_EMPLOYEES("organization:read-employees"),
 	ORGANIZATION_CREATE("organization:create"),
 	ORGANIZATION_UPDATE("organization:update"),
+	ORGANIZATION_SUSPEND("organization:suspend"),
 	ORGANIZATION_DELETE("organization:delete"),
 
 	BUSINESS_EVENT_READ_BYUSER("business_event:read-by-user"),

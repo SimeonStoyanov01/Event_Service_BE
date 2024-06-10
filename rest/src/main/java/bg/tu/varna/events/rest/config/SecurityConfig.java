@@ -20,10 +20,15 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-	private static final String[] WHITE_LIST_URL = { "/api/v1/auth/register/**", "/api/v1/auth/login", "/v2/api-docs",
+	private static final String[] WHITE_LIST_URL = { "/api/v1/auth/register/**", "/api/v1/auth/login", "/api/v1/auth/refresh", "/api/v1/auth/refresh",
+			"/v2/api-docs",
 			"/v3/api-docs", "/v3/api-docs/**", "/swagger-resources",
 			"/swagger-resources/**", "/configuration/ui", "/configuration/security",
-			"/swagger-ui/**", "/webjars/**", "/swagger-ui.html", "/test" , "/api/v1/business-event/get"};
+			"/swagger-ui/**", "/webjars/**", "/swagger-ui.html", "/test",
+
+			"/api/v1/business-event/get", "/api/v1/business-event/get_all_by_organization", "/api/v1/business-event/get_all",
+
+			"/api/v1/organization/get" };
 
 	private final JwtAuthenticationFilter jwtAuthFilter;
 	private final AuthenticationProvider authenticationProvider;
