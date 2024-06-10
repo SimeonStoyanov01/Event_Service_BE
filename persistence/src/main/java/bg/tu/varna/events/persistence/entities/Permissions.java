@@ -33,7 +33,7 @@ public enum Permissions {
 	ORGANIZATION_UPDATE("organization:update"),
 	ORGANIZATION_DELETE("organization:delete"),
 
-	BUSINESS_EVENT_BYUSER_READ("business_event_byuser:read"),
+	BUSINESS_EVENT_READ_BYUSER("business_event:read-by-user"),
 	BUSINESS_EVENT_CREATE("business_event:create"),
 	BUSINESS_EVENT_UPDATE("business_event:update"),
 	BUSINESS_EVENT_DELETE("business_event:delete"),
@@ -44,6 +44,8 @@ public enum Permissions {
 	PERSONAL_EVENT_UPDATE("personal_event:update"),
 	PERSONAL_EVENT_DELETE("personal_event:delete"),
 	PERSONAL_EVENT_READ("personal_event:read"),
+	PERSONAL_EVENT_READ_ALL("personal_event:read-all"),
+
 
 	RESERVATION_READ("reservation:read"),
 	RESERVATION_CREATE("reservation:create"),

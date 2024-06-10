@@ -1,8 +1,9 @@
-package bg.tu.varna.events.core.validationutils;
+package bg.tu.varna.events.core.utils;
 
 import bg.tu.varna.events.api.exceptions.UnauthorizedActionException;
 import bg.tu.varna.events.api.exceptions.UserNotFoundException;
 import bg.tu.varna.events.persistence.entities.Organization;
+import bg.tu.varna.events.persistence.entities.PersonalEvent;
 import bg.tu.varna.events.persistence.entities.Role;
 import bg.tu.varna.events.persistence.entities.User;
 import bg.tu.varna.events.persistence.repositories.UserRepository;
@@ -26,6 +27,14 @@ public class ValidationUtils {
 	public void validateUserBusinessOrganization(User user, Organization organization) {
 		if (user.getRole() == Role.BUSINESS || user.getRole() == Role.BUSINESS_ADMIN) {
 			if (!organization.getOrganizationId().equals(user.getOrganization().getOrganizationId())) {
+				throw new UnauthorizedActionException();
+			}
+		}
+	}
+
+	public void validateUserPersonalEvent(User user, PersonalEvent personalEvent) {
+		if (user.getRole() == Role.PERSONAL) {
+			if (!personalEvent.getUser().getUserId().equals(user.getUserId())) {
 				throw new UnauthorizedActionException();
 			}
 		}

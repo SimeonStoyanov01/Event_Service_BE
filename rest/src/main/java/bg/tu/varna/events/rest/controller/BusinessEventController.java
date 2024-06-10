@@ -84,7 +84,7 @@ public class BusinessEventController {
 		return ResponseEntity.ok(getAllEventsByOrgOperation.process(request));
 	}
 	@GetMapping("/get_my")
-	@PreAuthorize("hasAuthority('business_event_byuser:read')")
+	@PreAuthorize("hasAuthority('business_event:read-by-user')")
 	public ResponseEntity<GetMyEventsResponse> getMyEvents(@RequestParam("includeSuspended") Boolean includeSuspended) {
 		GetMyEventsRequest request = GetMyEventsRequest
 				.builder()

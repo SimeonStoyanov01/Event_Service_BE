@@ -7,7 +7,7 @@ import bg.tu.varna.events.api.exceptions.UserExistsException;
 import bg.tu.varna.events.api.operations.user.register.business.RegisterBusinessUserOperation;
 import bg.tu.varna.events.api.operations.user.register.business.RegisterBusinessUserRequest;
 import bg.tu.varna.events.api.operations.user.register.business.RegisterBusinessUserResponse;
-import bg.tu.varna.events.core.validationutils.ValidationUtils;
+import bg.tu.varna.events.core.utils.ValidationUtils;
 import bg.tu.varna.events.persistence.entities.Organization;
 import bg.tu.varna.events.persistence.entities.Role;
 import bg.tu.varna.events.persistence.entities.User;

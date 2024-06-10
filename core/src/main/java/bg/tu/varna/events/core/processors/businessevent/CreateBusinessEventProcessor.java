@@ -5,7 +5,7 @@ import bg.tu.varna.events.api.model.EventModel;
 import bg.tu.varna.events.api.operations.businessevent.create.CreateEventOperation;
 import bg.tu.varna.events.api.operations.businessevent.create.CreateEventRequest;
 import bg.tu.varna.events.api.operations.businessevent.create.CreateEventResponse;
-import bg.tu.varna.events.core.validationutils.ValidationUtils;
+import bg.tu.varna.events.core.utils.ValidationUtils;
 import bg.tu.varna.events.persistence.entities.Event;
 import bg.tu.varna.events.persistence.entities.EventStatus;
 import bg.tu.varna.events.persistence.entities.Organization;
