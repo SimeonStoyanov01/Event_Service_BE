@@ -1,7 +1,7 @@
 package bg.tu.varna.events.core.scheduled;
 
 import bg.tu.varna.events.persistence.entities.Event;
-import bg.tu.varna.events.persistence.entities.EventStatus;
+import bg.tu.varna.events.persistence.enums.EventStatus;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

@@ -1,6 +1,6 @@
 package bg.tu.varna.events.api.model;
 
-import bg.tu.varna.events.persistence.entities.EventStatus;
+import bg.tu.varna.events.persistence.enums.EventStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 

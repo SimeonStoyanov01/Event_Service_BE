@@ -7,7 +7,7 @@ import bg.tu.varna.events.api.operations.businessevent.suspend.SuspendEventOpera
 import bg.tu.varna.events.api.operations.businessevent.suspend.SuspendEventRequest;
 import bg.tu.varna.events.api.operations.businessevent.suspend.SuspendEventResponse;
 import bg.tu.varna.events.persistence.entities.Event;
-import bg.tu.varna.events.persistence.entities.EventStatus;
+import bg.tu.varna.events.persistence.enums.EventStatus;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;

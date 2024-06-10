@@ -1,5 +1,6 @@
 package bg.tu.varna.events.persistence.entities;
 
+import bg.tu.varna.events.persistence.enums.EventStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;

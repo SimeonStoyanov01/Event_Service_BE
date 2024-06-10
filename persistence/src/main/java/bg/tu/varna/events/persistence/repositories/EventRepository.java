@@ -1,9 +1,9 @@
 package bg.tu.varna.events.persistence.repositories;
 
 import bg.tu.varna.events.persistence.entities.Event;
-import bg.tu.varna.events.persistence.entities.EventStatus;
-import bg.tu.varna.events.persistence.entities.OrganizationStatus;
 import bg.tu.varna.events.persistence.entities.User;
+import bg.tu.varna.events.persistence.enums.EventStatus;
+import bg.tu.varna.events.persistence.enums.OrganizationStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

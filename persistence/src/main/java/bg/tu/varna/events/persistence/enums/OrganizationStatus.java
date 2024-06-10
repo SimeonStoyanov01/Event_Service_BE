@@ -1,4 +1,4 @@
-package bg.tu.varna.events.persistence.entities;
+package bg.tu.varna.events.persistence.enums;
 
 public enum OrganizationStatus {
 	ACTIVE,

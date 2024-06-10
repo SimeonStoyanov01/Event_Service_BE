@@ -6,7 +6,7 @@ import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsOperatio
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsRequest;
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsResponse;
 import bg.tu.varna.events.core.utils.ValidationUtils;
-import bg.tu.varna.events.persistence.entities.EventStatus;
+import bg.tu.varna.events.persistence.enums.EventStatus;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;

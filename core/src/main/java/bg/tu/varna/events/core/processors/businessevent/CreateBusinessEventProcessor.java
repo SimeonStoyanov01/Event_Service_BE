@@ -7,7 +7,11 @@ import bg.tu.varna.events.api.operations.businessevent.create.CreateEventOperati
 import bg.tu.varna.events.api.operations.businessevent.create.CreateEventRequest;
 import bg.tu.varna.events.api.operations.businessevent.create.CreateEventResponse;
 import bg.tu.varna.events.core.utils.ValidationUtils;
-import bg.tu.varna.events.persistence.entities.*;
+import bg.tu.varna.events.persistence.entities.Event;
+import bg.tu.varna.events.persistence.entities.Organization;
+import bg.tu.varna.events.persistence.entities.User;
+import bg.tu.varna.events.persistence.enums.EventStatus;
+import bg.tu.varna.events.persistence.enums.OrganizationStatus;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
 import bg.tu.varna.events.persistence.repositories.OrganizationRepository;
 import lombok.RequiredArgsConstructor;

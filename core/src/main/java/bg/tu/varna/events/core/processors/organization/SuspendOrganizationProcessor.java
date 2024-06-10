@@ -7,7 +7,7 @@ import bg.tu.varna.events.api.operations.organization.suspend.SuspendOrganizatio
 import bg.tu.varna.events.api.operations.organization.suspend.SuspendOrganizationRequest;
 import bg.tu.varna.events.api.operations.organization.suspend.SuspendOrganizationResponse;
 import bg.tu.varna.events.persistence.entities.Organization;
-import bg.tu.varna.events.persistence.entities.OrganizationStatus;
+import bg.tu.varna.events.persistence.enums.OrganizationStatus;
 import bg.tu.varna.events.persistence.repositories.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;

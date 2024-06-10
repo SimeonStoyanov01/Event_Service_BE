@@ -7,8 +7,8 @@ import bg.tu.varna.events.api.operations.businessevent.getbyorganization.GetAllE
 import bg.tu.varna.events.api.operations.businessevent.getbyorganization.GetAllEventsByOrgRequest;
 import bg.tu.varna.events.api.operations.businessevent.getbyorganization.GetAllEventsByOrgResponse;
 import bg.tu.varna.events.core.utils.ValidationUtils;
-import bg.tu.varna.events.persistence.entities.EventStatus;
 import bg.tu.varna.events.persistence.entities.Organization;
+import bg.tu.varna.events.persistence.enums.EventStatus;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
 import bg.tu.varna.events.persistence.repositories.OrganizationRepository;
 import lombok.RequiredArgsConstructor;

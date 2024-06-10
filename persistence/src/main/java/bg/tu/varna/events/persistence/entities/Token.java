@@ -1,5 +1,6 @@
 package bg.tu.varna.events.persistence.entities;
 
+import bg.tu.varna.events.persistence.enums.TokenType;
 import jakarta.persistence.*;
 import lombok.*;
 
