@@ -7,8 +7,8 @@ import bg.tu.varna.events.api.operations.user.register.organization.RegisterOrga
 import bg.tu.varna.events.api.operations.user.register.organization.RegisterOrganizationRequest;
 import bg.tu.varna.events.api.operations.user.register.organization.RegisterOrganizationResponse;
 import bg.tu.varna.events.persistence.entities.Organization;
-import bg.tu.varna.events.persistence.entities.Role;
 import bg.tu.varna.events.persistence.entities.User;
+import bg.tu.varna.events.persistence.enums.Role;
 import bg.tu.varna.events.persistence.repositories.OrganizationRepository;
 import bg.tu.varna.events.persistence.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

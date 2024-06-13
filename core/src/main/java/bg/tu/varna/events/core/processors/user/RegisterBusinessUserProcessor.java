@@ -9,8 +9,8 @@ import bg.tu.varna.events.api.operations.user.register.business.RegisterBusiness
 import bg.tu.varna.events.api.operations.user.register.business.RegisterBusinessUserResponse;
 import bg.tu.varna.events.core.utils.ValidationUtils;
 import bg.tu.varna.events.persistence.entities.Organization;
-import bg.tu.varna.events.persistence.entities.Role;
 import bg.tu.varna.events.persistence.entities.User;
+import bg.tu.varna.events.persistence.enums.Role;
 import bg.tu.varna.events.persistence.repositories.OrganizationRepository;
 import bg.tu.varna.events.persistence.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
