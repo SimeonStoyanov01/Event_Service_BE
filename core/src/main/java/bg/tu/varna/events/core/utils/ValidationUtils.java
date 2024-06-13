@@ -5,9 +5,10 @@ import bg.tu.varna.events.api.exceptions.UnauthorizedActionException;
 import bg.tu.varna.events.api.exceptions.UserNotFoundException;
 import bg.tu.varna.events.persistence.entities.Organization;
 import bg.tu.varna.events.persistence.entities.PersonalEvent;
-import bg.tu.varna.events.persistence.entities.Role;
+import bg.tu.varna.events.persistence.entities.Reservation;
 import bg.tu.varna.events.persistence.entities.User;
 import bg.tu.varna.events.persistence.enums.OrganizationStatus;
+import bg.tu.varna.events.persistence.enums.Role;
 import bg.tu.varna.events.persistence.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -63,6 +64,21 @@ public class ValidationUtils {
 	public void validateUserPersonalEvent(User user, PersonalEvent personalEvent) {
 		if (user.getRole() == Role.PERSONAL) {
 			if (!personalEvent.getUser().getUserId().equals(user.getUserId())) {
+				throw new UnauthorizedActionException();
+			}
+		}
+	}
+	/**
+	 * Validates if the given user is the owner of the specified reservation for an event.
+	 * Throws UnauthorizedActionException if the user does not own the event.
+	 *
+	 * @param user         the User to validate
+	 * @param reservation the Reservation to check against
+	 * @throws UnauthorizedActionException if the user does not own the event
+	 */
+	public void validateUserReservation(User user, Reservation reservation) {
+		if (user.getRole() == Role.PERSONAL) {
+			if (!reservation.getUser().getUserId().equals(user.getUserId())) {
 				throw new UnauthorizedActionException();
 			}
 		}

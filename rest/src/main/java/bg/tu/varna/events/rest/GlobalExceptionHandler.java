@@ -10,7 +10,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +32,7 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(value = Exception.class)
-	public ResponseEntity<?> globalExceptionHandler(Exception ex, WebRequest request) {
+	public ResponseEntity<?> globalExceptionHandler(Exception ex) {
 		logger.error("Unexpected error occurred", ex);
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -45,6 +44,10 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(EmptyEventsListException.class)
 	public ResponseEntity<String> handleEmptyEventsListException(EmptyEventsListException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
+	@ExceptionHandler(EmptyReservationsListException.class)
+	public ResponseEntity<String> handleEmptyEventsListException(EmptyReservationsListException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
 	@ExceptionHandler(EmptyEmployeeListException.class)
@@ -62,8 +65,19 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
 
+	@ExceptionHandler(ReservationNotFoundException.class)
+	public ResponseEntity<String> handleEventNotFoundException(ReservationNotFoundException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
+
+
 	@ExceptionHandler(EventSuspendedException.class)
 	public ResponseEntity<String> handleEventSuspendedException(EventSuspendedException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+	}
+
+	@ExceptionHandler(ReservationSuspendedException.class)
+	public ResponseEntity<String> handleEventSuspendedException(ReservationSuspendedException ex) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
 	}
 
@@ -71,11 +85,20 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleInvalidRefreshTokenException(InvalidRefreshTokenException ex) {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
 	}
-
+	@ExceptionHandler(TicketSoldOutException.class)
+	public ResponseEntity<String> handleInvalidRefreshTokenException(TicketSoldOutException ex) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+	}
 	@ExceptionHandler(OrganizationAlreadyExistsException.class)
 	public ResponseEntity<String> handleOrganizationAlreadyExistsException(OrganizationAlreadyExistsException ex) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
 	}
+
+	@ExceptionHandler(ReservationActiveException.class)
+	public ResponseEntity<String> handleOrganizationAlreadyExistsException(ReservationActiveException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+	}
+
 
 	@ExceptionHandler(PasswordsDoNotMatchException.class)
 	public ResponseEntity<String> handlePasswordsDoNotMatchException(PasswordsDoNotMatchException ex) {

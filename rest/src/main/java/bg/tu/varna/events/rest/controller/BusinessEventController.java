@@ -18,6 +18,9 @@ import bg.tu.varna.events.api.operations.businessevent.getbyorganization.GetAllE
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsOperation;
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsRequest;
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsResponse;
+import bg.tu.varna.events.api.operations.businessevent.getreservations.GetBusinessEventReservationsOperation;
+import bg.tu.varna.events.api.operations.businessevent.getreservations.GetBusinessEventReservationsRequest;
+import bg.tu.varna.events.api.operations.businessevent.getreservations.GetBusinessEventReservationsResponse;
 import bg.tu.varna.events.api.operations.businessevent.patch.PatchEventOperation;
 import bg.tu.varna.events.api.operations.businessevent.patch.PatchEventRequest;
 import bg.tu.varna.events.api.operations.businessevent.patch.PatchEventResponse;
@@ -42,6 +45,7 @@ public class BusinessEventController {
 	private final GetEventOperation getEventOperation;
 	private final GetAllEventsOperation getAllEventsOperation;
 	private final GetAllEventsByOrgOperation getAllEventsByOrgOperation;
+	private final GetBusinessEventReservationsOperation getBusinessEventReservationsOperation;
 	private final GetMyEventsOperation getMyEventsOperation;
 	private final SuspendEventOperation suspendEventOperation;
 	private final PatchEventOperation patchEventOperation;
@@ -62,6 +66,17 @@ public class BusinessEventController {
 				.build();
 		return ResponseEntity.ok(getEventOperation.process(request));
 	}
+
+	@GetMapping("/get_reservations")
+	@PreAuthorize("hasAuthority('business_event:read-reservations')")
+	public ResponseEntity<GetBusinessEventReservationsResponse> getEventReservations(@RequestParam("eventId") @UUID String eventId) {
+		GetBusinessEventReservationsRequest request = GetBusinessEventReservationsRequest
+				.builder()
+				.eventId(eventId)
+				.build();
+		return ResponseEntity.ok(getBusinessEventReservationsOperation.process(request));
+	}
+
 
 	@GetMapping("/get_all")
 	public ResponseEntity<GetAllEventsResponse> getAllEvents(@RequestParam("includeSuspended") Boolean includeSuspended) {

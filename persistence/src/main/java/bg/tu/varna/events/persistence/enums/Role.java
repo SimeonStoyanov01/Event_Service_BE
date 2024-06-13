@@ -1,4 +1,4 @@
-package bg.tu.varna.events.persistence.entities;
+package bg.tu.varna.events.persistence.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static bg.tu.varna.events.persistence.entities.Permissions.*;
+import static bg.tu.varna.events.persistence.enums.Permissions.*;
 
 @Getter
 @RequiredArgsConstructor
@@ -28,8 +28,10 @@ public enum Role {
 					SUBSCRIPTION_READ,
 					SUBSCRIPTION_DELETE,
 					RESERVATION_CREATE,
-					RESERVATION_DELETE,
-					RESERVATION_READ
+					RESERVATION_READ,
+					RESERVATION_READMY,
+					RESERVATION_CANCEL,
+					RESERVATION_UPDATE
 			)),
 	BUSINESS(
 			Set.of(
@@ -38,11 +40,11 @@ public enum Role {
 					BUSINESS_USER_DELETE,
 					BUSINESS_EVENT_CREATE,
 					BUSINESS_EVENT_READ_BYUSER,
+					BUSINESS_EVENT_READ_RESERVATIONS,
 					BUSINESS_EVENT_DELETE,
 					BUSINESS_EVENT_UPDATE,
 					SUBSCRIPTION_READ,
 					RESERVATION_READ,
-					RESERVATION_CREATE,
 					RESERVATION_DELETE,
 					ORGANIZATION_READ_SUBSCRIPTIONS,
 					ORGANIZATION_READ_EMPLOYEES
@@ -59,11 +61,11 @@ public enum Role {
 					BUSINESS_USER_CREATE,
 					BUSINESS_EVENT_CREATE,
 					BUSINESS_EVENT_READ_BYUSER,
+					BUSINESS_EVENT_READ_RESERVATIONS,
 					BUSINESS_EVENT_DELETE,
 					BUSINESS_EVENT_UPDATE,
 					SUBSCRIPTION_READ,
 					RESERVATION_READ,
-					RESERVATION_CREATE,
 					RESERVATION_DELETE,
 					ORGANIZATION_READ_SUBSCRIPTIONS,
 					ORGANIZATION_READ_EMPLOYEES,
@@ -87,6 +89,7 @@ public enum Role {
 					BUSINESS_USER_DELETE,
 					BUSINESS_EVENT_CREATE,
 					BUSINESS_EVENT_READ_BYUSER,
+					BUSINESS_EVENT_READ_RESERVATIONS,
 					BUSINESS_EVENT_DELETE,
 					BUSINESS_EVENT_UPDATE,
 					BUSINESS_EVENT_SUSPEND,
@@ -94,6 +97,9 @@ public enum Role {
 					RESERVATION_READ,
 					RESERVATION_CREATE,
 					RESERVATION_DELETE,
+					RESERVATION_READMY,
+					RESERVATION_CANCEL,
+					RESERVATION_UPDATE,
 					ORGANIZATION_READ_SUBSCRIPTIONS,
 					ORGANIZATION_READ_EMPLOYEES,
 					ORGANIZATION_CREATE,

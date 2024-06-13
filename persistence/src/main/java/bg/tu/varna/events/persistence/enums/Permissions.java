@@ -1,4 +1,4 @@
-package bg.tu.varna.events.persistence.entities;
+package bg.tu.varna.events.persistence.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +36,7 @@ public enum Permissions {
 	ORGANIZATION_DELETE("organization:delete"),
 
 	BUSINESS_EVENT_READ_BYUSER("business_event:read-by-user"),
+	BUSINESS_EVENT_READ_RESERVATIONS("business_event:read-reservations"),
 	BUSINESS_EVENT_CREATE("business_event:create"),
 	BUSINESS_EVENT_UPDATE("business_event:update"),
 	BUSINESS_EVENT_DELETE("business_event:delete"),
@@ -50,8 +51,11 @@ public enum Permissions {
 
 
 	RESERVATION_READ("reservation:read"),
+	RESERVATION_READMY("reservation:read-my-reservations"),
 	RESERVATION_CREATE("reservation:create"),
 	RESERVATION_DELETE("reservation:delete"),
+	RESERVATION_CANCEL("reservation:cancel"),
+	RESERVATION_UPDATE("reservation:update"),
 
 	SUBSCRIPTION_READ("subscription:read"),
 	SUBSCRIPTION_CREATE("subscription:create"),
