@@ -1,5 +1,7 @@
 package bg.tu.varna.events.persistence.entities;
 
+import bg.tu.varna.events.persistence.enums.ReservationStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +21,12 @@ public class Reservation {
 	private UUID reservationId;
 
 	@Column(name = "reservation_date_time")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime reservationDateTime;
+
+	@Column(name = "reservation_time")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime reservationTime;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
@@ -28,4 +35,12 @@ public class Reservation {
 	@ManyToOne
 	@JoinColumn(name = "event_id", nullable = false)
 	private Event event;
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private ReservationStatus reservationStatus;
+
+	@Column(nullable = false)
+	private Integer numberOfPeople;
+
 }

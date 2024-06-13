@@ -42,7 +42,7 @@ public class PersonalEventController {
 	}
 	@PatchMapping("/update")
 	@PreAuthorize("hasAuthority('personal_event:update')")
-	public ResponseEntity<PatchPersonalEventResponse> suspendEvent(@RequestBody @Valid PatchPersonalEventRequest request) {
+	public ResponseEntity<PatchPersonalEventResponse> updateEvent(@RequestBody @Valid PatchPersonalEventRequest request) {
 		return ResponseEntity.ok(patchPersonalEventOperation.process(request));
 	}
 
