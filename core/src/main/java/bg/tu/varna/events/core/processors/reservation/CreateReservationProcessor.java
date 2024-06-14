@@ -2,7 +2,7 @@ package bg.tu.varna.events.core.processors.reservation;
 
 import bg.tu.varna.events.api.exceptions.EventNotFoundException;
 import bg.tu.varna.events.api.exceptions.EventSuspendedException;
-import bg.tu.varna.events.api.exceptions.OrganizationAlreadyExistsException;
+import bg.tu.varna.events.api.exceptions.OrganizationSuspendedException;
 import bg.tu.varna.events.api.exceptions.TicketSoldOutException;
 import bg.tu.varna.events.api.model.ReservationModel;
 import bg.tu.varna.events.api.operations.reservation.create.CreateReservationOperation;
@@ -42,10 +42,10 @@ public class CreateReservationProcessor implements CreateReservationOperation {
 
 		User user = validationUtils.getCurrentAuthenticatedUser();
 
-		if(event.getOrganization().getOrganizationStatus() == OrganizationStatus.SUSPENDED)
-			throw new OrganizationAlreadyExistsException();
+		if(event.getOrganization().getOrganizationStatus().equals(OrganizationStatus.SUSPENDED))
+			throw new OrganizationSuspendedException();
 
-		if(event.getStatus() == EventStatus.SUSPENDED || event.getStatus() == EventStatus.EXPIRED)
+		if(event.getStatus().equals(EventStatus.SUSPENDED) || event.getStatus().equals(EventStatus.EXPIRED))
 			throw new EventSuspendedException();
 
 		Reservation reservation = saveReservation(request, event, user);
