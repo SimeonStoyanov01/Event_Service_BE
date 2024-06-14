@@ -14,6 +14,8 @@ public class SubscriptionMapper implements Converter<Subscription, SubscriptionM
 				.subscriptionId(source.getSubscriptionId())
 				.userId(source.getUser().getUserId())
 				.organizationId(source.getOrganization().getOrganizationId())
+				.subscriptionTime(source.getReservationTime())
+				.subscriptionStatus(source.getSubscriptionStatus())
 				.build();
 	}
 }

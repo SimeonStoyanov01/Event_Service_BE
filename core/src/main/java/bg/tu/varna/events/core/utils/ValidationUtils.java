@@ -3,10 +3,7 @@ package bg.tu.varna.events.core.utils;
 import bg.tu.varna.events.api.exceptions.OrganizationSuspendedException;
 import bg.tu.varna.events.api.exceptions.UnauthorizedActionException;
 import bg.tu.varna.events.api.exceptions.UserNotFoundException;
-import bg.tu.varna.events.persistence.entities.Organization;
-import bg.tu.varna.events.persistence.entities.PersonalEvent;
-import bg.tu.varna.events.persistence.entities.Reservation;
-import bg.tu.varna.events.persistence.entities.User;
+import bg.tu.varna.events.persistence.entities.*;
 import bg.tu.varna.events.persistence.enums.OrganizationStatus;
 import bg.tu.varna.events.persistence.enums.Role;
 import bg.tu.varna.events.persistence.repositories.UserRepository;
@@ -83,7 +80,21 @@ public class ValidationUtils {
 			}
 		}
 	}
-
+	/**
+	 * Validates if the given user is the owner of the specified subscription for an organization.
+	 * Throws UnauthorizedActionException if the user is not the subscriber of the event.
+	 *
+	 * @param user         the User to validate
+	 * @param subscription the Subscription to check against
+	 * @throws UnauthorizedActionException if the user does not own the event
+	 */
+	public void validateUserSubscription(User user, Subscription subscription) {
+		if (user.getRole() == Role.PERSONAL) {
+			if (!subscription.getUser().getUserId().equals(user.getUserId())) {
+				throw new UnauthorizedActionException();
+			}
+		}
+	}
 	/**
 	 * Validates access to a suspended organization.
 	 * - Throws OrganizationSuspendedException if the organization is suspended and the user is unauthenticated or a regular user.
