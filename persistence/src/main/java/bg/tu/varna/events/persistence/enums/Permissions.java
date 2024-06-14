@@ -58,7 +58,9 @@ public enum Permissions {
 	RESERVATION_UPDATE("reservation:update"),
 
 	SUBSCRIPTION_READ("subscription:read"),
+	SUBSCRIPTION_READMY("subscription:read-my-subscriptions"),
 	SUBSCRIPTION_CREATE("subscription:create"),
+	SUBSCRIPTION_CANCEL("subscription:cancel"),
 	SUBSCRIPTION_DELETE("subscription:delete");
 
 
