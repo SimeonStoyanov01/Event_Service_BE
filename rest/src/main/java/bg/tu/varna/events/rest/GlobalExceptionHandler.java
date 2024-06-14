@@ -66,16 +66,27 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(ReservationNotFoundException.class)
-	public ResponseEntity<String> handleEventNotFoundException(ReservationNotFoundException ex) {
+	public ResponseEntity<String> handleReservationNotFoundException(ReservationNotFoundException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
-
+	@ExceptionHandler(SubscriptionNotFoundException.class)
+	public ResponseEntity<String> handleSubscriptionNotFoundException(SubscriptionNotFoundException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
 
 	@ExceptionHandler(EventSuspendedException.class)
 	public ResponseEntity<String> handleEventSuspendedException(EventSuspendedException ex) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
 	}
+	@ExceptionHandler(SubscriptionCanceledException.class)
+	public ResponseEntity<String> handleSubscriptionSuspendedException(SubscriptionCanceledException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+	}
 
+	@ExceptionHandler(SubscriptionActiveException.class)
+	public ResponseEntity<String> handleSubscriptionActiveException(SubscriptionActiveException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+	}
 	@ExceptionHandler(ReservationSuspendedException.class)
 	public ResponseEntity<String> handleEventSuspendedException(ReservationSuspendedException ex) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());

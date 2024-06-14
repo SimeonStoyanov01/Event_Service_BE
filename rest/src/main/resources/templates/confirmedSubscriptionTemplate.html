@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Subscription Confirmation</title>
+    <th:block th:replace="~{styles.html}"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Eventify Subscription Confirmation</h1>
+    </div>
+    <div class="content">
+        <p>Dear <span th:text="${name}">Name</span>,</p>
+        <p>You have just subscribed to <strong><span th:text="${organization}">Organization</span></strong>!</p>
+        <p>We are excited to have you with us.</p>
+        <p>Stay tuned for the latest updates and exciting events coming your way!</p>
+        <p>You can view our events <a th:href="${eventsLink}">here</a>.</p>
+        <p>Best regards,<br/>The Eventify Team</p>
+    </div>
+    <div class="footer">
+        <p><a th:href="${unsubscribeLink}">Unsubscribe</a></p>
+        <p>&copy; 2024 Eventify. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>
