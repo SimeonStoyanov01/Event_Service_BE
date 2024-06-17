@@ -41,4 +41,7 @@ public class PersonalEvent {
 
 	@OneToMany(mappedBy = "personalEvent")
 	private List<Invitation> invitations;
+
+	@OneToMany(mappedBy = "personalEvent", cascade = CascadeType.ALL)
+	private List<Menu> menus;
 }
