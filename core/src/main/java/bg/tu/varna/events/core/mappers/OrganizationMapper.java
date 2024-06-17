@@ -16,7 +16,7 @@ public class OrganizationMapper implements Converter<Organization, OrganizationM
 				.organizationName(source.getOrganizationName())
 				.organizationAddress(source.getOrganizationAddress())
 				.credibilityScore(source.getCredibilityScore())
-				.organizationStatus(source.getOrganizationStatus().name())
+				.organizationStatus(source.getOrganizationStatus())
 				.build();
 	}
 }
