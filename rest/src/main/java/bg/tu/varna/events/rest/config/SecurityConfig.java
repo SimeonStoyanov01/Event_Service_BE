@@ -28,7 +28,10 @@ public class SecurityConfig {
 
 			"/api/v1/business-event/get", "/api/v1/business-event/get_all_by_organization", "/api/v1/business-event/get_all",
 
-			"/api/v1/organization/get" };
+			"/api/v1/organization/get",
+
+			"/api/v1/invitation/answer"
+	};
 
 	private final JwtAuthenticationFilter jwtAuthFilter;
 	private final AuthenticationProvider authenticationProvider;

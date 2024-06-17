@@ -66,6 +66,19 @@ public class ValidationUtils {
 		}
 	}
 	/**
+	 * Validates if the given invitee is the actual email carrier of the invitation.
+	 * Throws UnauthorizedActionException if the user does not own the event.
+	 *
+	 * @param inviteeEmail         the Invited guest to validate
+	 * @param invitation the Invitation to check against
+	 * @throws UnauthorizedActionException if the user does not own the event
+	 */
+	public void validateInvitedGuestEmail(Invitation invitation,String inviteeEmail) {
+			if (!invitation.getInviteeEmail().equals(inviteeEmail)) {
+				throw new UnauthorizedActionException();
+			}
+	}
+	/**
 	 * Validates if the given user is the owner of the specified reservation for an event.
 	 * Throws UnauthorizedActionException if the user does not own the event.
 	 *
