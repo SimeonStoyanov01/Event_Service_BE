@@ -9,7 +9,6 @@ import bg.tu.varna.events.api.operations.menu.getall.GetAllMenusPerEventResponse
 import bg.tu.varna.events.core.utils.ValidationUtils;
 import bg.tu.varna.events.persistence.entities.PersonalEvent;
 import bg.tu.varna.events.persistence.entities.User;
-import bg.tu.varna.events.persistence.repositories.InvitationRepository;
 import bg.tu.varna.events.persistence.repositories.MenuRepository;
 import bg.tu.varna.events.persistence.repositories.PersonalEventRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,6 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class GetAllMenusPerEventProcessor implements GetAllMenusPerEventOperation {
-	private final InvitationRepository invitationRepository;
 	private final MenuRepository menuRepository;
 	private final PersonalEventRepository personalEventRepository;
 	private final ValidationUtils validationUtils;
