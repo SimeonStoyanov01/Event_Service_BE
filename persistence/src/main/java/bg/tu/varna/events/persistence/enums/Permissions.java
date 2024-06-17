@@ -61,8 +61,17 @@ public enum Permissions {
 	SUBSCRIPTION_READMY("subscription:read-my-subscriptions"),
 	SUBSCRIPTION_CREATE("subscription:create"),
 	SUBSCRIPTION_CANCEL("subscription:cancel"),
-	SUBSCRIPTION_DELETE("subscription:delete");
+	SUBSCRIPTION_DELETE("subscription:delete"),
 
+	INVITATION_READ("invitation:read"),
+	INVITATION_READMY("invitation:read-my-invitations"),
+	INVITATION_CREATE("invitation:create"),
+	INVITATION_DELETE("invitation:cancel"),
+
+	MENU_READ("menu:read"),
+	MENU_CREATE("menu:create"),
+	MENU_DELETE("menu:delete"),
+	MENU_READMY("menu:read-my-per-event");
 
 	private final String permission;
 }

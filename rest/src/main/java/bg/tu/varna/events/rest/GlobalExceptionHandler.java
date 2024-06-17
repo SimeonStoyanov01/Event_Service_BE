@@ -46,17 +46,26 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleEmptyEventsListException(EmptyEventsListException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
+
+	@ExceptionHandler(EmptyInvitationsListException.class)
+	public ResponseEntity<String> handleEmptyInvitationsListException(EmptyInvitationsListException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
+	@ExceptionHandler(EmptyMenuListException.class)
+	public ResponseEntity<String> handleEmptyMenuListException(EmptyMenuListException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
 	@ExceptionHandler(EmptyReservationsListException.class)
-	public ResponseEntity<String> handleEmptyEventsListException(EmptyReservationsListException ex) {
+	public ResponseEntity<String> handleEmptyReservationsListException(EmptyReservationsListException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
 	@ExceptionHandler(EmptyEmployeeListException.class)
-	public ResponseEntity<String> handleEmptyEventsListException(EmptyEmployeeListException ex) {
+	public ResponseEntity<String> handleEmptyEmployeeListException(EmptyEmployeeListException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
 
 	@ExceptionHandler(EmptySubscriptionsListException.class)
-	public ResponseEntity<String> handleEmptyEventsListException(EmptySubscriptionsListException ex) {
+	public ResponseEntity<String> handleEmptySubscriptionsListException(EmptySubscriptionsListException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
 
@@ -73,7 +82,14 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleSubscriptionNotFoundException(SubscriptionNotFoundException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
-
+	@ExceptionHandler(MenuNotFoundException.class)
+	public ResponseEntity<String> handleInvitationNotFoundException(MenuNotFoundException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
+	@ExceptionHandler(InvitationNotFoundException.class)
+	public ResponseEntity<String> handleInvitationNotFoundException(InvitationNotFoundException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
 	@ExceptionHandler(EventSuspendedException.class)
 	public ResponseEntity<String> handleEventSuspendedException(EventSuspendedException ex) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());

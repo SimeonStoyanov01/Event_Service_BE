@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetBusinessEventReservationsResponse  implements ProcessorResponse {
-	String eventName;
-	List<ReservationModel> reservationModels;
+	private String eventName;
+	private List<ReservationModel> reservationModels;
 
 }

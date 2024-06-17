@@ -1,5 +1,6 @@
 package bg.tu.varna.events.persistence.entities;
 
+import bg.tu.varna.events.persistence.enums.InvitationStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,9 +20,15 @@ public class Invitation {
 
 	private String inviteeEmail;
 
-	private String status;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private InvitationStatus invitationStatus;
 
 	@ManyToOne
 	@JoinColumn(name = "personal_event_id", nullable = false)
 	private PersonalEvent personalEvent;
+
+	@ManyToOne
+	@JoinColumn(name = "menu_id")
+	private Menu menu;
 }
