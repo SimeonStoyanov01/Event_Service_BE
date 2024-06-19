@@ -71,7 +71,13 @@ public enum Permissions {
 	MENU_READ("menu:read"),
 	MENU_CREATE("menu:create"),
 	MENU_DELETE("menu:delete"),
-	MENU_READMY("menu:read-my-per-event");
+	MENU_READMY("menu:read-my-per-event"),
+
+	REPORT_READ("report:read"),
+	REPORT_READALL("report:read-all"),
+	REPORT_CREATE("report:create"),
+	REPORT_DELETE("report:cancel"),
+	REPORT_ANSWER("report:answer");
 
 	private final String permission;
 }
