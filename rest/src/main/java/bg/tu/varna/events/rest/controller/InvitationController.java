@@ -15,6 +15,7 @@ import bg.tu.varna.events.api.operations.invitation.get.GetInvitationResponse;
 import bg.tu.varna.events.api.operations.invitation.getmy.GetMyInvitationsOperation;
 import bg.tu.varna.events.api.operations.invitation.getmy.GetMyInvitationsRequest;
 import bg.tu.varna.events.api.operations.invitation.getmy.GetMyInvitationsResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.UUID;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class InvitationController {
 
 	@PostMapping("/create")
 	@PreAuthorize("hasAuthority('invitation:create')")
-	public ResponseEntity<CreateInvitationResponse> createInvitation(@RequestBody CreateInvitationRequest request) {
+	public ResponseEntity<CreateInvitationResponse> createInvitation(@RequestBody @Valid CreateInvitationRequest request) {
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(createInvitationOperation.process(request));
@@ -63,12 +64,12 @@ public class InvitationController {
 
 	@DeleteMapping("/delete")
 	@PreAuthorize("hasAuthority('invitation:delete')")
-	public ResponseEntity<DeleteInvitationResponse> deleteInvitation(@RequestBody DeleteInvitationRequest request) {
+	public ResponseEntity<DeleteInvitationResponse> deleteInvitation(@RequestBody @Valid DeleteInvitationRequest request) {
 		return ResponseEntity.ok(deleteInvitationOperation.process(request));
 	}
 
 	@PatchMapping("/answer")
-	public ResponseEntity<AnswerInvitationResponse> answerInvitation(@RequestBody AnswerInvitationRequest request) {
+	public ResponseEntity<AnswerInvitationResponse> answerInvitation(@RequestBody @Valid AnswerInvitationRequest request) {
 		return ResponseEntity.ok(answerInvitationOperation.process(request));
 	}
 }

@@ -12,6 +12,7 @@ import bg.tu.varna.events.api.operations.menu.get.GetMenuResponse;
 import bg.tu.varna.events.api.operations.menu.getall.GetAllMenusPerEventOperation;
 import bg.tu.varna.events.api.operations.menu.getall.GetAllMenusPerEventRequest;
 import bg.tu.varna.events.api.operations.menu.getall.GetAllMenusPerEventResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.UUID;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class MenuController {
 
 	@PostMapping("/create")
 	@PreAuthorize("hasAuthority('menu:create')")
-	public ResponseEntity<CreateMenuResponse> createMenu(@RequestBody CreateMenuRequest request) {
+	public ResponseEntity<CreateMenuResponse> createMenu(@RequestBody @Valid CreateMenuRequest request) {
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(createMenuOperation.process(request));
@@ -59,7 +60,7 @@ public class MenuController {
 
 	@DeleteMapping("/delete")
 	@PreAuthorize("hasAuthority('menu:delete')")
-	public ResponseEntity<DeleteMenuResponse> deleteInvitation(@RequestBody DeleteMenuRequest request) {
+	public ResponseEntity<DeleteMenuResponse> deleteInvitation(@RequestBody @Valid DeleteMenuRequest request) {
 		return ResponseEntity.ok(deleteMenuOperation.process(request));
 	}
 }
