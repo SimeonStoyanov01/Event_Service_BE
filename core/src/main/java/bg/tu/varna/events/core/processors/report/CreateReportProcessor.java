@@ -1,7 +1,6 @@
 package bg.tu.varna.events.core.processors.report;
 
 import bg.tu.varna.events.api.model.ReportModel;
-import bg.tu.varna.events.api.operations.mailer.MailerOperation;
 import bg.tu.varna.events.api.operations.report.create.CreateReportOperation;
 import bg.tu.varna.events.api.operations.report.create.CreateReportRequest;
 import bg.tu.varna.events.api.operations.report.create.CreateReportResponse;
@@ -24,7 +23,6 @@ public class CreateReportProcessor implements CreateReportOperation {
 	private final ReportRepository reportRepository;
 	private final ValidationUtils validationUtils;
 	private final ConversionService conversionService;
-	private final MailerOperation mailerOperation;
 	@Value("${client.url}")
 	String clientUrl;
 	@Override
