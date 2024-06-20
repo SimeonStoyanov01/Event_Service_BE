@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Event Notification</title>
+    <th:block th:replace="~{styles.html}"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>New Event from <span th:text="${organization}">Organization</span></h1>
+    </div>
+    <div class="content">
+        <p>Dear Subscriber,</p>
+        <p>We are excited to announce a new event:</p>
+        <p><strong>Event Name:</strong> <span th:text="${eventName}">Event Name</span></p>
+        <p><strong>Date:</strong> <span th:text="${eventDate}">Event Date</span></p>
+        <p><strong>Location:</strong> <span th:text="${eventLocation}">Event Location</span></p>
+        <p><strong>Description:</strong> <span th:text="${eventDescription}">Event Description</span></p>
+        <p>We hope to see you there!</p>
+        <p>Best regards,<br/>The Eventify Team</p>
+    </div>
+    <div class="footer">
+        <p><a th:href="${unsubscribeLink}">Unsubscribe</a></p>
+        <p>&copy; 2024 Eventify. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>

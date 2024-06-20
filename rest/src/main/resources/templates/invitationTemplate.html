@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Invitation to <span th:text="${eventName}">Event</span></title>
+    <th:block th:replace="~{styles.html}"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>You're Invited to <span th:text="${eventName}">Event</span></h1>
+    </div>
+    <div class="content">
+        <p>Dear <span th:text="${inviteeName}">Invitee</span>,</p>
+        <p>We are excited to invite you to our event:</p>
+        <p><strong>Event Name:</strong> <span th:text="${eventName}">Event Name</span></p>
+        <p><strong>Date:</strong> <span th:text="${eventDate}">Event Date</span></p>
+        <p><strong>Location:</strong> <span th:text="${eventLocation}">Event Location</span></p>
+        <p><strong>Description:</strong> <span th:text="${eventDescription}">Event Description</span></p>
+        <p>To respond to this invitation, please click <a th:href="${invitationLink}">here</a>.</p>
+        <p>Best regards,<br/>The Eventify Team</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Eventify. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>

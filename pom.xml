@@ -18,6 +18,7 @@
     </parent>
 
     <properties>
+        <jjwt.revision>0.12.5</jjwt.revision>
         <revision>0.0.1-SNAPSHOT</revision>
         <java.version>21</java.version>
     </properties>
@@ -77,5 +78,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

@@ -1,8 +1,11 @@
 package bg.tu.varna.events.persistence.entities;
 
+import bg.tu.varna.events.persistence.enums.EventStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -26,6 +29,7 @@ public class Event {
 	private String eventDescription;
 
 	@Column(nullable = false)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime eventDateTime;
 
 	@ManyToOne
@@ -41,4 +45,11 @@ public class Event {
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<Reservation> reservations;
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private EventStatus status;
+
+	@Column(nullable = false)
+	private BigDecimal ticketPrice;
 }

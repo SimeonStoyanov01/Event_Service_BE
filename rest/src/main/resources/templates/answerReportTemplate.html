@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Answer</title>
+    <th:block th:replace="~{styles.html}"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Report Closed</h1>
+    </div>
+    <div class="content">
+        <p>Dear <span th:text="${name}">Name</span>,</p>
+        <p>Report <strong><span th:text="${report}"></span></strong> has been reviewed and closed.</p>
+        <p><strong>Report description :</strong></p>
+        <p><span th:text="${description}"></span></p>
+        <p> Below is the reason:</p>
+        <p><strong>Reason:</strong> <span th:text="${reason}">Reason</span></p>
+        <p>Thank you for bringing this issue to our attention.</p>
+        <p>Best regards,<br/>The Eventify Team</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Eventify. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>

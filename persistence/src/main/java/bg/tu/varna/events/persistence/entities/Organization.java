@@ -1,5 +1,6 @@
 package bg.tu.varna.events.persistence.entities;
 
+import bg.tu.varna.events.persistence.enums.OrganizationStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +27,10 @@ public class Organization {
 	private String organizationAddress;
 
 	private Integer credibilityScore;
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private OrganizationStatus organizationStatus;
 
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
 	private List<User> businessUsers = new ArrayList<>();
