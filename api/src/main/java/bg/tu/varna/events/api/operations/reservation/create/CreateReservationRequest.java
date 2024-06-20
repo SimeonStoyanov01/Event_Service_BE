@@ -19,4 +19,7 @@ public class CreateReservationRequest implements ProcessorRequest{
 	@Positive(message = "Capacity must be a positive number")
 	@NotNull(message = "Capacity is required")
 	private Integer numberOfPeople;
+
+	@NotNull(message = "Specify whether you will pay now or on the spot")
+	private Boolean payNow;
 }

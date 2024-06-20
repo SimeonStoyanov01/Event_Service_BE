@@ -1,8 +1,11 @@
 package bg.tu.varna.events.core.scheduled;
 
 import bg.tu.varna.events.persistence.entities.Event;
+import bg.tu.varna.events.persistence.entities.Reservation;
 import bg.tu.varna.events.persistence.enums.EventStatus;
+import bg.tu.varna.events.persistence.enums.ReservationStatus;
 import bg.tu.varna.events.persistence.repositories.EventRepository;
+import bg.tu.varna.events.persistence.repositories.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -16,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ExpiredEventsScheduler {
 	private final EventRepository eventRepository;
+	private final ReservationRepository reservationRepository;
 
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void updateExpiredEvents() {
@@ -25,6 +29,12 @@ public class ExpiredEventsScheduler {
 			if (!event.getStatus().equals(EventStatus.EXPIRED)) {
 				event.setStatus(EventStatus.EXPIRED);
 			}
+			List<Reservation> activeReservations = reservationRepository.findAllByEventAndReservationStatus(event, ReservationStatus.ACTIVE);
+			for (Reservation reservation : activeReservations) {
+				reservation.setReservationStatus(ReservationStatus.ENDED);
+			}
+			reservationRepository.saveAll(activeReservations);
+
 		}
 		eventRepository.saveAll(expiredEvents);
 	}

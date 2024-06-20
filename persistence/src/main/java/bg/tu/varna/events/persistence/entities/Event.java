@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -48,4 +49,7 @@ public class Event {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private EventStatus status;
+
+	@Column(nullable = false)
+	private BigDecimal ticketPrice;
 }

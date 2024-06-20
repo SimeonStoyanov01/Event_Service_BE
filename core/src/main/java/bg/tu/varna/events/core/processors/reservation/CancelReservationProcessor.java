@@ -1,6 +1,7 @@
 package bg.tu.varna.events.core.processors.reservation;
 
 import bg.tu.varna.events.api.exceptions.ReservationNotFoundException;
+import bg.tu.varna.events.api.exceptions.ReservationPaidException;
 import bg.tu.varna.events.api.exceptions.ReservationSuspendedException;
 import bg.tu.varna.events.api.model.ReservationModel;
 import bg.tu.varna.events.api.operations.reservation.cancel.CancelReservationOperation;
@@ -34,6 +35,9 @@ public class CancelReservationProcessor implements CancelReservationOperation {
 		validationUtils.validateUserReservation(user,reservation);
 		if(reservation.getReservationStatus()== ReservationStatus.CANCELED)
 			throw new ReservationSuspendedException();
+
+		if(reservation.getIsPaid())
+			throw new ReservationPaidException();
 
 		reservation.setReservationStatus(ReservationStatus.CANCELED);
 

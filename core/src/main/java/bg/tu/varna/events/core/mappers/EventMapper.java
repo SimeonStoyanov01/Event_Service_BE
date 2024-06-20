@@ -19,6 +19,7 @@ public class EventMapper implements Converter<Event, EventModel> {
 				.organizationId(source.getOrganization().getOrganizationId())
 				.status(source.getStatus())
 				.capacity(source.getCapacity())
+				.ticketPrice(source.getTicketPrice())
 				.build();
 	}
 }

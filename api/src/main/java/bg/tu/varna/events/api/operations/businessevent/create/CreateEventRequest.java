@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -29,8 +30,8 @@ public class CreateEventRequest implements ProcessorRequest{
 	@Future(message = "Event date and time must be in the future")
 	private LocalDateTime eventDateTime;
 
-//	@NotNull(message = "User ID is required")
-//	private UUID userId;
+	@NotNull(message = "Ticket price is required")
+	private BigDecimal ticketPrice;
 
 	@Positive(message = "Capacity must be a positive number")
 	@NotNull(message = "Capacity is required")

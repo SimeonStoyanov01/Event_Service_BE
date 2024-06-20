@@ -4,6 +4,7 @@ import bg.tu.varna.events.persistence.enums.EventStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 @Getter
@@ -24,6 +25,8 @@ public class EventModel {
 	private Integer capacity;
 
 	private UUID organizationId;
+
+	private BigDecimal ticketPrice;
 
 	private EventStatus status;
 
