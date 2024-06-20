@@ -30,6 +30,7 @@ public enum Permissions {
 
 	ORGANIZATION_READ_SUBSCRIPTIONS("organization:read-subscriptions"),
 	ORGANIZATION_READ_EMPLOYEES("organization:read-employees"),
+	ORGANIZATION_READ_EARNINGS("organization:read-earnings"),
 	ORGANIZATION_CREATE("organization:create"),
 	ORGANIZATION_UPDATE("organization:update"),
 	ORGANIZATION_SUSPEND("organization:suspend"),
@@ -41,6 +42,8 @@ public enum Permissions {
 	BUSINESS_EVENT_UPDATE("business_event:update"),
 	BUSINESS_EVENT_DELETE("business_event:delete"),
 	BUSINESS_EVENT_SUSPEND("business_event:suspend"),
+	BUSINESS_EVENT_READ_EARNINGS("business_event:read-earnings"),
+
 
 
 	PERSONAL_EVENT_CREATE("personal_event:create"),
@@ -56,6 +59,7 @@ public enum Permissions {
 	RESERVATION_DELETE("reservation:delete"),
 	RESERVATION_CANCEL("reservation:cancel"),
 	RESERVATION_UPDATE("reservation:update"),
+	RESERVATION_PAY("reservation:pay"),
 
 	SUBSCRIPTION_READ("subscription:read"),
 	SUBSCRIPTION_READMY("subscription:read-my-subscriptions"),

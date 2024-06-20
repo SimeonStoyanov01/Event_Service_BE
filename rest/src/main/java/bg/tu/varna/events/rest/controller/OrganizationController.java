@@ -6,6 +6,12 @@ import bg.tu.varna.events.api.operations.organization.delete.DeleteOrganizationR
 import bg.tu.varna.events.api.operations.organization.get.GetOrganizationOperation;
 import bg.tu.varna.events.api.operations.organization.get.GetOrganizationRequest;
 import bg.tu.varna.events.api.operations.organization.get.GetOrganizationResponse;
+import bg.tu.varna.events.api.operations.organization.getaccumulated.GetOrganizationAccumulatedEarningsOperation;
+import bg.tu.varna.events.api.operations.organization.getaccumulated.GetOrganizationAccumulatedEarningsRequest;
+import bg.tu.varna.events.api.operations.organization.getaccumulated.GetOrganizationAccumulatedEarningsResponse;
+import bg.tu.varna.events.api.operations.organization.getearnings.GetOrganizationEarningsOperation;
+import bg.tu.varna.events.api.operations.organization.getearnings.GetOrganizationEarningsRequest;
+import bg.tu.varna.events.api.operations.organization.getearnings.GetOrganizationEarningsResponse;
 import bg.tu.varna.events.api.operations.organization.getemployees.GetOrganizationEmployeesOperation;
 import bg.tu.varna.events.api.operations.organization.getemployees.GetOrganizationEmployeesRequest;
 import bg.tu.varna.events.api.operations.organization.getemployees.GetOrganizationEmployeesResponse;
@@ -35,6 +41,8 @@ public class OrganizationController  {
 	private final GetOrganizationEmployeesOperation getOrganizationEmployeesOperation;
 	private final DeleteOrganizationOperation deleteOrganizationOperation;
 	private final SuspendOrganizationOperation suspendOrganizationOperation;
+	private final GetOrganizationEarningsOperation getOrganizationEarningsOperation;
+	private final GetOrganizationAccumulatedEarningsOperation getOrganizationAccumulatedEarningsOperation;
 	@GetMapping("/get")
 	public ResponseEntity<GetOrganizationResponse> getEvent(@RequestParam("organizationId") @UUID String organizationId) {
 		GetOrganizationRequest request = GetOrganizationRequest
@@ -54,6 +62,24 @@ public class OrganizationController  {
 		return ResponseEntity.ok(getOrganizationEmployeesOperation.process(request));
 	}
 
+	@GetMapping("/get_earnings")
+	@PreAuthorize("hasAuthority('organization:read-earnings')")
+	public ResponseEntity<GetOrganizationEarningsResponse> getOrganizationEarningsPerEvents(@RequestParam("organizationId") String organizationId) {
+		GetOrganizationEarningsRequest request = GetOrganizationEarningsRequest
+				.builder()
+				.organizationId(organizationId)
+				.build();
+		return ResponseEntity.ok(getOrganizationEarningsOperation.process(request));
+	}
+	@GetMapping("/get_accumulated")
+	@PreAuthorize("hasAuthority('organization:read-earnings')")
+	public ResponseEntity<GetOrganizationAccumulatedEarningsResponse> getOrganizationAccumulatedEarnings(@RequestParam("organizationId") String organizationId) {
+		GetOrganizationAccumulatedEarningsRequest request = GetOrganizationAccumulatedEarningsRequest
+				.builder()
+				.organizationId(organizationId)
+				.build();
+		return ResponseEntity.ok(getOrganizationAccumulatedEarningsOperation.process(request));
+	}
 	@GetMapping("/get_subscriptions")
 	@PreAuthorize("hasAuthority('organization:read-subscriptions')")
 	public ResponseEntity<GetOrganizationSubscriptionsResponse> getOrganizationSubscriptions(@RequestParam("organizationId") String organizationId) {

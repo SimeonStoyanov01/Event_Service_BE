@@ -15,6 +15,9 @@ import bg.tu.varna.events.api.operations.businessevent.getall.GetAllEventsRespon
 import bg.tu.varna.events.api.operations.businessevent.getbyorganization.GetAllEventsByOrgOperation;
 import bg.tu.varna.events.api.operations.businessevent.getbyorganization.GetAllEventsByOrgRequest;
 import bg.tu.varna.events.api.operations.businessevent.getbyorganization.GetAllEventsByOrgResponse;
+import bg.tu.varna.events.api.operations.businessevent.getearnings.GetEventEarningsOperation;
+import bg.tu.varna.events.api.operations.businessevent.getearnings.GetEventEarningsRequest;
+import bg.tu.varna.events.api.operations.businessevent.getearnings.GetEventEarningsResponse;
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsOperation;
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsRequest;
 import bg.tu.varna.events.api.operations.businessevent.getmy.GetMyEventsResponse;
@@ -49,6 +52,7 @@ public class BusinessEventController {
 	private final GetMyEventsOperation getMyEventsOperation;
 	private final SuspendEventOperation suspendEventOperation;
 	private final PatchEventOperation patchEventOperation;
+	private final GetEventEarningsOperation getEventEarningsOperation;
 
 	@PostMapping("/create")
 	@PreAuthorize("hasAuthority('business_event:create')")
@@ -106,6 +110,15 @@ public class BusinessEventController {
 				.includeSuspended(includeSuspended)
 				.build();
 		return ResponseEntity.ok(getMyEventsOperation.process(request));
+	}
+	@GetMapping("/get_earnings")
+	@PreAuthorize("hasAuthority('business_event:read-earnings')")
+	public ResponseEntity<GetEventEarningsResponse> getEarnings(@RequestParam("eventId") @UUID String eventId) {
+		GetEventEarningsRequest request = GetEventEarningsRequest
+				.builder()
+				.eventId(eventId)
+				.build();
+		return ResponseEntity.ok(getEventEarningsOperation.process(request));
 	}
 
 	@PatchMapping("/suspend")
