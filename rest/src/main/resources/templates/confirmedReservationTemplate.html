@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Reservation Confirmation</title>
+  <th:block th:replace="~{styles.html}"></th:block>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Reservation confirmation for <span th:text="${event}">Event Name</span></h1>
+  </div>
+  <div class="content">
+    <p>Dear <span th:text="${name}">Name</span>,</p>
+    <p>Thank you for reserving a spot at <span th:text="${event}">Event Name</span>.</p>
+    <p><strong>Event Description:</strong> <span th:text="${description}">Event Description</span></p>
+    <p><strong>Date and Time:</strong> <span th:text="${datetime}">Event Date and Time</span></p>
+    <p><strong>Number of People:</strong> <span th:text="${quantity}">Number of People</span></p>
+    <p><strong>Total Amount:</strong> <span th:text="${total}">Total Amount</span></p>
+    <p><strong>Paid:</strong> <span th:text="${paid}">Paid Status</span></p>
+    <p>Below is your QR code for the reservation:</p>
+    <img th:src="'data:image/png;base64,' + ${qrCodeImage}" alt="QR Code">
+    <p>You can view more events <a th:href="${eventsLink}">here</a>.</p>
+  </div>
+  <div class="footer">
+    <p>&copy; 2024 Eventify. All rights reserved.</p>
+  </div>
+</div>
+</body>
+</html>
