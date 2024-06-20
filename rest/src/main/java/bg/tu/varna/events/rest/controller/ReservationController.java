@@ -18,6 +18,9 @@ import bg.tu.varna.events.api.operations.reservation.getmy.GetMyReservationsResp
 import bg.tu.varna.events.api.operations.reservation.patch.PatchReservationOperation;
 import bg.tu.varna.events.api.operations.reservation.patch.PatchReservationRequest;
 import bg.tu.varna.events.api.operations.reservation.patch.PatchReservationResponse;
+import bg.tu.varna.events.api.operations.reservation.pay.ChangePaymentStatusReservationOperation;
+import bg.tu.varna.events.api.operations.reservation.pay.ChangePaymentStatusReservationRequest;
+import bg.tu.varna.events.api.operations.reservation.pay.ChangePaymentStatusReservationResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.UUID;
@@ -37,6 +40,7 @@ public class ReservationController {
 	private final GetReservationOperation getReservationOperation;
 	private final PatchReservationOperation patchReservationOperation;
 	private final CancelReservationOperation cancelReservationOperation;
+	private final ChangePaymentStatusReservationOperation changePaymentStatusReservationOperation;
 
 	@PostMapping("/create")
 	@PreAuthorize("hasAuthority('reservation:create')")
@@ -75,10 +79,16 @@ public class ReservationController {
 	public ResponseEntity<PatchReservationResponse> updateReservation(@RequestBody @Valid PatchReservationRequest request) {
 		return ResponseEntity.ok(patchReservationOperation.process(request));
 	}
+
 	@PatchMapping("/cancel")
 	@PreAuthorize("hasAuthority('reservation:cancel')")
 	public ResponseEntity<CancelReservationResponse> cancelReservation(@RequestBody @Valid CancelReservationRequest request) {
 		return ResponseEntity.ok(cancelReservationOperation.process(request));
 	}
 
+	@PatchMapping("/pay")
+	@PreAuthorize("hasAuthority('reservation:pay')")
+	public ResponseEntity<ChangePaymentStatusReservationResponse> payReservation(@RequestBody @Valid ChangePaymentStatusReservationRequest request) {
+		return ResponseEntity.ok(changePaymentStatusReservationOperation.process(request));
+	}
 }

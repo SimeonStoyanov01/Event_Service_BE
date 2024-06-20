@@ -37,7 +37,7 @@ public class Reservation {
 	private Event event;
 
 	@Column(nullable = false)
-	private Boolean paid;
+	private Boolean isPaid;
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)

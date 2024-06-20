@@ -1,6 +1,7 @@
 package bg.tu.varna.events.core.processors.reservation;
 
 import bg.tu.varna.events.api.exceptions.ReservationNotFoundException;
+import bg.tu.varna.events.api.exceptions.ReservationPaidException;
 import bg.tu.varna.events.api.exceptions.ReservationSuspendedException;
 import bg.tu.varna.events.api.exceptions.TicketSoldOutException;
 import bg.tu.varna.events.api.model.ReservationModel;
@@ -41,6 +42,9 @@ public class PatchReservationProcessor implements PatchReservationOperation {
 
 		if(!reservation.getReservationStatus().equals(ReservationStatus.ACTIVE))
 			throw new ReservationSuspendedException();
+
+		if(reservation.getIsPaid().equals(true))
+			throw new ReservationPaidException();
 
 		User user = validationUtils.getCurrentAuthenticatedUser();
 		validationUtils.validateUserReservation(user, reservation);

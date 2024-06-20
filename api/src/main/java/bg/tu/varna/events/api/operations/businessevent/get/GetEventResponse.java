@@ -10,6 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetEventResponse implements ProcessorResponse {
-	EventModel eventModel;
+	private EventModel eventModel;
 }
 

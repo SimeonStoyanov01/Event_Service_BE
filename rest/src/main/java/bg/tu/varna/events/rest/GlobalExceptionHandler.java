@@ -90,6 +90,11 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleInvitationNotFoundException(InvitationNotFoundException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
+	@ExceptionHandler(ReportNotFoundException.class)
+	public ResponseEntity<String> handleInvitationNotFoundException(ReportNotFoundException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
+
 	@ExceptionHandler(EventSuspendedException.class)
 	public ResponseEntity<String> handleEventSuspendedException(EventSuspendedException ex) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
@@ -120,12 +125,20 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleOrganizationAlreadyExistsException(OrganizationAlreadyExistsException ex) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
 	}
+	@ExceptionHandler(ReservationPaidException.class)
+	public ResponseEntity<String> handleReservationPaidException(ReservationPaidException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+	}
 
 	@ExceptionHandler(ReservationActiveException.class)
 	public ResponseEntity<String> handleOrganizationAlreadyExistsException(ReservationActiveException ex) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
 	}
 
+	@ExceptionHandler(value = ReportClosedException.class)
+	public ResponseEntity<String> handleReportClosedException(ReportClosedException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+	}
 
 	@ExceptionHandler(PasswordsDoNotMatchException.class)
 	public ResponseEntity<String> handlePasswordsDoNotMatchException(PasswordsDoNotMatchException ex) {
@@ -147,6 +160,10 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
 	}
 
+	@ExceptionHandler(value = QrGenerationFailedException.class)
+	public ResponseEntity<String> handleQrGenerationException(QrGenerationFailedException ex) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+	}
 
 	@ExceptionHandler(UserExistsException.class)
 	public ResponseEntity<String> handleUserExistsException(UserExistsException ex) {
